@@ -47,6 +47,10 @@ class Livre
         return $this->id;
     }
 
+    public function __toString()
+    {
+        return $this->getTitre();
+    }
     public function getIsbn(): ?string
     {
         return $this->isbn;

@@ -15,6 +15,8 @@ class Auteur
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\Length(min: 2,max: 50,minMessage: 'Your first name must be at least {{ limit }} characters long',maxMessage: 
+    'Your first name cannot be longer than {{ limit }} characters',)]
     #[ORM\Column(type: 'string', length: 255)]
     private $nom_prenom;
 
@@ -63,7 +65,10 @@ class Auteur
 
         return $this;
     }
-
+public function __toString()
+    {
+        return $this->nom_prenom;
+    }
     public function getDateDeNaissance(): ?\DateTimeInterface
     {
         return $this->date_de_naissance;

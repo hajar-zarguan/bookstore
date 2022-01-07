@@ -15,11 +15,23 @@ class Genre
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Your first name must be at least {{ limit }} characters long',
+        maxMessage: 'Your first name cannot be longer than {{ limit }} characters',
+    )]
     #[ORM\Column(type: 'string', length: 255)]
     private $nom;
 
     #[ORM\ManyToMany(targetEntity: Livre::class, mappedBy: 'genre')]
     private $livres;
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
 
     public function __construct()
     {
