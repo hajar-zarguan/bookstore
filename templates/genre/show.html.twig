@@ -6,30 +6,45 @@
 {% block body %}
 	<h1>Genre</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ genre.id }}</td>
-			</tr>
-			<tr>
-				<th>Nom</th>
-				<td>{{ genre.nom }}</td>
-			</tr>
-			<tr>
-				<th>Livres</th>
-				<td>
+
+	
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container ">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="img-box">
+            <img src="images/about-img.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                {{ genre.id }} ) {{ genre.nom }}
+              </h2>
+            </div>
+            <p>
+				La liste des livres <br>
 					{% for livre in genre.livres %}
-						<span>{{ livre }}</span><br>
+						<span> -  {{ livre }}</span><br>
 					{% endfor %}
-				</td>
-			</tr>
-		</tbody>
-	</table>
+				 </p>
+				 {% if is_granted('ROLE_ADMIN') %}
+				 <a href="{{ path('genre_edit', {'id': genre.id}) }}">Modifier</a>
+		 <br>
+				 {{ include('genre/_delete_form.html.twig') }}
+			 {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
 
-	{% if is_granted('ROLE_ADMIN') %}
-		<a class="btn btn-primary" href="{{ path('genre_edit', {'id': genre.id}) }}">Modifier</a>
 
-		{{ include('genre/_delete_form.html.twig') }}
-	{% endif %}
+
+  </section>
+
+  <!-- end about section -->
+
 {% endblock %}

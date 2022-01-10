@@ -59,11 +59,11 @@
 							<a class="nav-link pl-lg-0" href="{{ path('livre_index') }}">Accueil <span class="sr-only">(current)</span></a>
 						  </li>
 						  <li class="nav-item">
-							<a class="nav-link" href="{{ path('auteur_index') }}"> Auteur</a>
+							<a class="nav-link" href="{{ path('auteur_index') }}">Auteur</a>
 						  </li>
 						 
 						  <li class="nav-item">
-							<a class="nav-link" href="{{ path('livre_index') }}"> Livre </a>
+							<a class="nav-link" href="{{ path('livre_index') }}">Livre </a>
 						  </li>
 			
 						   <li class="nav-item">
@@ -71,19 +71,19 @@
 						  </li>
 						  
 						  <li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact Us</a>
+							<a class="nav-link" href="contact.html">Contactez-nous</a>
 						  </li>
 
 						  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 								<li class="nav-item">
-									<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+									<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
 								</li>
 							{% else %}
 								<li class="nav-item">
-									<a class="nav-link" href="{{ path('app_login') }}">Login</a>
+									<a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="{{ path('app_register') }}">Register</a>
+									<a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
 								</li>
 							{% endif %}	
 
@@ -91,7 +91,7 @@
 
 						</ul>
 						<from class="search_form">
-						  <input type="text" class="form-control" placeholder="Search here...">
+						  <input type="text" class="form-control" placeholder="Rechercher ici...">
 						  <button class="" type="submit">
 							<i class="fa fa-search" aria-hidden="true"></i>
 						  </button>
@@ -116,7 +116,7 @@
         <div class="col-md-6 col-lg-3 info-col">
           <div class="info_detail">
             <h4>
-              About Us
+              Apropos de nous
             </h4>
             <p>
               Vitae aut explicabo fugit facere alias distinctio, exem commodi mollitia minusem dignissimos atque asperiores incidunt vel voluptate iste
@@ -140,7 +140,7 @@
         <div class="col-md-6 col-lg-3 info-col">
           <div class="info_contact">
             <h4>
-              Address
+              Adresse
             </h4>
             <div class="contact_link_box">
               <a href="">
@@ -152,13 +152,13 @@
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <span>
-                  Call +01 1234567890
+                   +212 1234567890
                 </span>
               </a>
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
-                  demo@gmail.com
+                  hajar@gmail.com
                 </span>
               </a>
             </div>
@@ -172,7 +172,7 @@
             <form action="#">
               <input type="text" placeholder="Enter email" />
               <button type="submit">
-                sabonner
+                S'abonner
               </button>
             </form>
           </div>
@@ -194,7 +194,7 @@
   <footer class="footer_section">
     <div class="container">
       <p>
-        &copy; <span id="displayYear"></span> All Rights Reserved By
+        &copy; <span id="displayYear"></span> Tous les droits reservees
         <a href="">Hajar Zarguan</a>
       </p>
     </div>
