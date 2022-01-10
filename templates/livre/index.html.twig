@@ -4,92 +4,173 @@
 {% endblock %}
 
 {% block body %}
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<div class="collapse navbar-collapse" id="navbarNavDropdown">
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<select class="form-select mt-2" onchange="filtrerParNote(event)">
-					<option selected>Note</option>
-					{% for i in 0..20 %}
-						<option value="{{ i }}">{{ i }}</option>
-					{% endfor %}
-				</select>
+	
+	
+ <!-- slider section -->
+ <section class="slider_section ">
+	<div id="customCarousel1" class="carousel slide" data-ride="carousel">
+	  <div class="carousel-inner">
+		<div class="carousel-item active">
+		  <div class="container ">
+			<div class="row">
+			  <div class="col-md-6">
+				<div class="detail-box">
+				  <h5>
+					 Bookstore
+				  </h5>
+				  <h1>
+					Vous trouverez tous types <br>
+					des livres
+				  </h1>
+				  <p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quam velit saepe dolorem deserunt quo quidem ad optio.
+				  </p>
+				  <a href="{{ path('genre_index') }}">
+					Voir plus
+				  </a>
+				</div>
+			  </div>
+			  <div class="col-md-6">
+				<div class="img-box">
+				  <img src="images/slider-img.png" alt="">
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="carousel-item">
+		  <div class="container ">
+			<div class="row">
+			  <div class="col-md-6">
+				<div class="detail-box">
+				  <h5>
+					Hajar Zarguan
+				  </h5>
+				  <h1>
+					Savois plus d'information à propos  <br>des auteurs 
+				  </h1>
+				  <p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quam velit saepe dolorem deserunt quo quidem ad optio.
+				  </p>
+				  <a href="{{ path('auteur_index') }}">
+					Savoir plus
+				  </a>
+				</div>
+			  </div>
+			  <div class="col-md-6">
+				<div class="img-box">
+				  <img src="images/slider-img.png" alt="">
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
 
-			</li>
-			<li class="nav-item">
-				<select class="form-select mt-2" onchange="filtrerParDate(event)">
-					<option selected>Date de publication</option>
-					{% for date in dates|sort  %}
-						<option value="{{date.date_de_parution|date('m/d/Y')}}">{{date.date_de_parution|date("m/d/Y")}}</option>
-					{% endfor %}
-				</select>
-
-			</li>
-
-			<li class="nav-item">
-				<select class="form-select mt-2" onchange="filtrerParAuteur(event)">
-					<option selected>Auteur</option>
-					{% for auteur in auteurs %}
-						<option value="{{auteur.id}}">{{auteur.nomPrenom}}</option>
-					{% endfor %}
-				</select>
-
-			</li>
-
-			<li>
-				<select class="form-select mt-2" onchange="filtrerParGenre(event)">
-					<option selected>Genre</option>
-					{% for genre in genres %}
-						<option value="{{genre.id}}">{{genre.nom}}</option>
-					{% endfor %}
-				</select>
-
-			</li>
-
-
-
-			</ul>
-
-	</nav>
-
-	<div class=" row">
-
-		<div class="col-md-6">
-	<form method="POST" onsubmit="chercher(event)">
-		<span>Chercher</span>
-		<input id="motCle" type="text" class="form-control">
-		<button class="btn btn-primary my-2">Chercher</button>
-	</form>
+	  </div>
+	  <div class="carousel_btn_box">
+		<a class="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">
+		  <i class="fa fa-angle-left" aria-hidden="true"></i>
+		  <span class="sr-only">precedent</span>
+		</a>
+		<a class="carousel-control-next" href="#customCarousel1" role="button" data-slide="next">
+		  <i class="fa fa-angle-right" aria-hidden="true"></i>
+		  <span class="sr-only">suivant</span>
+		</a>
+	  </div>
 	</div>
-
-	<div class="col-md-6">
-	<form method="POST" onsubmit="list(event)">
-		<span>Lister les livres dont la date de parution est comprise entre deux années données
-		</span>
-		<input id="dateMin" type="number" class="form-control">
-		<input id="dateMax" type="number" class="form-control">
-		<button class="btn btn-primary my-2">Lister</button>
-	</form>
-</div>
+  </section>
+  <!-- end slider section -->
 </div>
 
 
 	
-
-	
-
-
-
-
  <!-- blog section -->
-
- <section class="blog_section layout_padding">
-    <div class="container">
+ 
+ <section class="blog_section layout_padding"style=" background-color: white;" >
+    <div class="container" >
+		
       <div class="heading_container heading_center">
         <h2>
-          From Our Blog
+          Les livres 
         </h2>
+		{% if is_granted('ROLE_ADMIN') %}
+		<a style="margin-bottom: 50px;" href="{{ path('livre_new') }}">Ajouter un livre </a>
+		{% endif %}
       </div>
+
+	  
+		<div class=" row ">
+	
+			<div class="col-md-3">
+			<form method="POST" onsubmit="chercher(event)">
+			<input id="motCle" type="text" class="form-control" placeholder="Chercher">
+			<button class="btn btn-primary my-2">Chercher</button>
+		</form>
+		</div>
+	
+		<div class="col-md-3">
+		<form method="POST" onsubmit="list(event)">
+			
+			<input id="dateMin" type="number" class="form-control" placeholder="date 1">
+			<input id="dateMax" type="number" class="form-control" placeholder="date 2">
+			<button class="btn btn-primary ">Lister</button>
+		</form>
+	</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3 "> 
+			<select class="form-select mt-2" onchange="filtrerParNote(event)">
+				<option selected>Note</option>
+				{% for i in 0..20 %}
+					<option value="{{ i }}">{{ i }}</option>
+				{% endfor %}
+			</select>
+
+		</div>
+		
+		
+
+		<div class="col-md-3 "> 
+			<select class="form-select mt-2" onchange="filtrerParDate(event)">
+				<option selected>Date de publication</option>
+				{% for date in dates|sort  %}
+					<option value="{{date.date_de_parution|date('m/d/Y')}}">{{date.date_de_parution|date("m/d/Y")}}</option>
+				{% endfor %}
+			</select>
+			
+		</div>
+	
+
+		<div class="col-md-3 "> 
+			<select class="form-select mt-2" onchange="filtrerParAuteur(event)">
+				<option selected>Auteur</option>
+				{% for auteur in auteurs %}
+					<option value="{{auteur.id}}">{{auteur.nomPrenom}}</option>
+				{% endfor %}
+			</select>
+			
+		</div>
+		
+
+		<div class="col-md-3 "> 
+
+		<select class="form-select mt-2" onchange="filtrerParGenre(event)">
+			<option selected>Genre</option>
+			{% for genre in genres %}
+				<option value="{{genre.id}}">{{genre.nom}}</option>
+			{% endfor %}
+		</select>	
+		</div>	
+		
+
+
+	</div>
+
+		
+	
+	
+
       <div class="row">
 
 
@@ -98,17 +179,15 @@
           <div class="box">
             <div class="img-box">
             
-              <h4 class="blog_date">
-                <span>
-					{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}
-                </span>
+              <h4 class="blog_date" style="background-color: cadetblue;">
+                <span> {{ livre.titre }} 
+					               </span>
               </h4>
             </div>
             <div class="detail-box">
               <h5>
+				{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}
 				
-				<td>{{ livre.titre }}</td>
-				<td></td>
               </h5>
               <p>
 				- ISBN: {{ livre.isbn }}
@@ -116,9 +195,9 @@
 				- Nombre des pages: {{ livre.nombrePages }} pages
 				<br> - Note: <span id="livre-note-{{ livre.id }}">{{ livre.note }}</span>
               </p>
-              <a  href="{{ path('livre_show', {'id': livre.id}) }}">Afficher</a>
+            	<a  class="btn btn-info"  style="color: white;" href="{{ path('livre_show', {'id': livre.id}) }}"><i class="far fa-eye"></i></a>
 						{% if is_granted('ROLE_ADMIN') %}
-							<a  href="{{ path('livre_edit', {'id': livre.id}) }}">Modifier</a>
+				<a  class="btn btn-success" style="color: white;" href="{{ path('livre_edit', {'id': livre.id}) }}"><i class="far fa-edit"></i></a>
 							{{ include('livre/_delete_form.html.twig') }}
 						{% endif %}
             </div>
@@ -136,50 +215,6 @@
 
 
 
-
-	<table id="livres" class="table mt-5">
-		<thead>
-			<tr>
-				<th>Isbn</th>
-				<th>Titre</th>
-				<th>Nombre de pages</th>
-				<th>Date de parution</th>
-				<th>Note</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for livre in livres %}
-				<tr>
-					<td>{{ livre.isbn }}</td>
-					<td>{{ livre.titre }}</td>
-					<td>{{ livre.nombrePages }}</td>
-					<td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
-
-					<td>
-						<span id="livre-note-{{ livre.id }}">{{ livre.note }}</span>
-					</td>
-
-
-					<td>
-						<a class="btn btn-primary" href="{{ path('livre_show', {'id': livre.id}) }}">Afficher</a>
-						{% if is_granted('ROLE_ADMIN') %}
-							<a class="btn btn-primary" href="{{ path('livre_edit', {'id': livre.id}) }}">Modifier</a>
-							{{ include('livre/_delete_form.html.twig') }}
-						{% endif %}
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="7">Aucun résultat</td>
-				</tr>
-			{% endfor %}
-
-		</tbody>
-	</table>
-	{% if is_granted('ROLE_ADMIN') %}
-		<a class="btn btn-primary" href="{{ path('livre_new') }}">Ajouter</a>
-	{% endif %}
 {% endblock %}
 {% block javascripts %}
 	<script src="/js/main.js"></script>
