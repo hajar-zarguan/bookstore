@@ -10,15 +10,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\GenreRepository;
+use App\Repository\AuteurRepository;
 
 #[Route('/livre')]
 class LivreController extends AbstractController
 {
     #[Route('/', name: 'livre_index', methods: ['GET'])]
-    public function index(LivreRepository $livreRepository): Response
+    public function index(LivreRepository $livreRepository, GenreRepository $genreRepository, AuteurRepository $auteurRepository): Response
     {
+        $livres = $livreRepository->findAll();
+
         return $this->render('livre/index.html.twig', [
-            'livres' => $livreRepository->findAll(),
+            'livres' => $livres,
+            'genres' => $genreRepository->findAll(),
+            'auteurs' => $auteurRepository->findAll(),
+            'dates' => $livreRepository->findDates(),
         ]);
     }
 
@@ -78,4 +85,78 @@ class LivreController extends AbstractController
 
         return $this->redirectToRoute('livre_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    /**
+     * @Route("/chercher/{motCle}", name="livre_chercher", methods={"GET"})
+     */
+    public function chercher(String $motCle, LivreRepository $livreRepository): Response
+    {
+        $livres = $livreRepository->findByTitre($motCle);
+
+        return $this->render('livre/chercher.html.twig', [
+            'livres' => $livres,
+        ]);
+    }
+
+
+    /**
+     * @Route("/liste-entre-deux-dates/{dateMin}/{dateMax}")
+     */
+    public function listeEntreDeuxDates($dateMin, $dateMax, LivreRepository $livreRepository): Response
+    {
+        $livres = $livreRepository->findBetweenTwoDates(strval($dateMin), strval($dateMax));
+        return $this->render('livre/chercher.html.twig', [
+            'livres' => $livres,
+        ]);
+    }
+
+    /**
+     * @Route("/liste-par-note/{note}", name="livre_list_by_note", methods={"GET"})
+     */
+    public function listByNote(LivreRepository $livreRepository, $note): Response
+    {
+        $livres = $livreRepository->findByNote($note);
+        return $this->render('livre/chercher.html.twig', [
+            'livres' => $livres,
+        ]);
+    }
+
+    /**
+     * @Route("/liste-par-date/{date}/", name="livre_list_by_date", methods={"GET"})
+     */
+    public function listByDate(LivreRepository $livreRepository, $date): Response
+    {
+        $livres = $livreRepository->findByDate($date);
+        return $this->render('livre/chercher.html.twig', [
+            'livres' => $livres,
+        ]);
+    }
+
+
+    /**
+     * @Route("/liste-par-auteur/{auteur}/", name="livre_list_by_auteur", methods={"GET"})
+     */
+    public function listByAuteur(LivreRepository $livreRepository, $auteur): Response
+    {
+        $livres = $livreRepository->findByAuteur($auteur);
+        return $this->render('livre/chercher.html.twig', [
+            'livres' => $livres,
+        ]);
+    }
+
+    /**
+     * @Route("/liste-par-genre/{genre}/", name="livre_list_by_genre", methods={"GET"})
+     */
+    public function listByGenre(LivreRepository $livreRepository, $genre): Response
+    {
+        $livres =  $livreRepository->findByGenre($genre);
+
+        return $this->render('livre/chercher.html.twig', [
+            'livres' => $livres,
+        ]);
+    }
+
+
+
 }
