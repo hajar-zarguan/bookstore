@@ -5,42 +5,48 @@
 
 {% block body %}
 <div class="container">
-	<h1>Auteurs</h1>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Nom et Prenom</th>
-				<th>Sexe</th>
-				<th>Date de naissance</th>
-				<th>Nationalite</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for auteur in auteurs %}
-				<tr>
-					<td>{{ auteur.nomPrenom }}</td>
-					<td>{{ auteur.sexe }}</td>
-					<td>{{ auteur.dateDeNaissance ? auteur.dateDeNaissance|date('Y-m-d') : '' }}</td>
-					<td>{{ auteur.nationalite }}</td>
-					<td>
-						<a class="btn btn-primary" href="{{ path('auteur_show', {'id': auteur.id}) }}">Afficher</a>
+	
+	<section class="client_section ">
+		<h1>Listes des auteurs</h1>
+		{% if is_granted('ROLE_ADMIN') %}
+		<a class="btn btn-primary" href="{{ path('auteur_new') }}">Ajouter</a>
+	{% endif %}
+		<div class="row">
+	       {% for auteur in auteurs %}
+		  
+								
+				<div class="col-md-3 mx-auto">
+				<div class="client_container ">
+					
+					<div class="detail-box">
+						<span>{{ auteur.id }} )</span>
+					<p>
+					-  {{ auteur.nomPrenom }} est né le {{ auteur.dateDeNaissance ? auteur.dateDeNaissance|date('Y-m-d') : '' }} 
+					<br>
+					-  Sa nationalité est {{ auteur.nationalite }}.
+
+					<a class="btn btn-primary" href="{{ path('auteur_show', {'id': auteur.id}) }}">Afficher</a>
 						{% if is_granted('ROLE_ADMIN') %}
 							<a class="btn btn-primary" href="{{ path('auteur_edit', {'id': auteur.id}) }}">Modifier</a>
 							{{ include('auteur/_delete_form.html.twig') }}
 						{% endif %}
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="6">Aucun résultat</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+					</p>
+					<span>
+						<i class="fa fa-quote-left" aria-hidden="true"></i>
+					</span>
+					</div>
+				
+				</div>
+				</div>
 
-	{% if is_granted('ROLE_ADMIN') %}
-		<a class="btn btn-primary" href="{{ path('auteur_new') }}">Ajouter</a>
-	{% endif %}
+		
+		
+			{% endfor %}
+		</div>
+		</section>
+
+
+	
+	
 </div>
 {% endblock %}
