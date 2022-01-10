@@ -30,7 +30,7 @@
 	<select class="form-select mt-2" onchange="filtrerParDate(event)">
 		<option selected>Date de publication</option>
 		{% for date in dates|sort  %}
-			<option value="{{date.date_de_parution|date("m/d/Y")}}">{{date.date_de_parution|date("m/d/Y")}}</option>
+			<option value="{{date.date_de_parution|date('m/d/Y')}}">{{date.date_de_parution|date("m/d/Y")}}</option>
 		{% endfor %}
 	</select>
 	<select class="form-select mt-2" onchange="filtrerParAuteur(event)">

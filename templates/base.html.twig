@@ -1,51 +1,214 @@
 {# templates/base.html.twig #}
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8"/>
-		<title>
-			{% block title %}Welcome!
-			{% endblock %}
-		</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> {% block stylesheets %}{% endblock %}
-		</head>
-		<body>
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="{{ path('livre_index') }}">Book Store</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('livre_index') }}">Livres</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('auteur_index') }}">Auteurs</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('genre_index') }}">Genres</a>
-							</li>
+	
+		<head>
+			<!-- Basic -->
+			<meta charset="utf-8" />
+			<base href="/" />
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<!-- Mobile Metas -->
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+			<!-- Site Metas -->
+			<link rel="icon" href="images/favicon.png" type="image/gif" />
+			<meta name=" bookstore" content="" />
+			<meta name="description" content="" />
+			<meta name="Hajar Zarguan" content="" />
+			<title>
+				{% block title %}Welcome!
+				{% endblock %}
+			</title>
+		  
+			<!-- bootstrap core css -->
+			<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+			<!-- font awesome style -->
+			<link href="css/font-awesome.min.css" rel="stylesheet" />
+		  
+			<!-- Custom styles for this template -->
+			<link href="css/style.css" rel="stylesheet" />
+			<!-- responsive style -->
+			<link href="css/responsive.css" rel="stylesheet" />
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> {% block stylesheets %}{% endblock %}
+	
+		  </head>
 
-							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-								<li>
+
+
+		<body>
+
+			<div class="hero_area">
+				<!-- header section strats -->
+
+
+				<header class="header_section">
+				  <div class="container-fluid">
+					<nav class="navbar navbar-expand-lg custom_nav-container ">
+					  <a class="navbar-brand" href="{{ path('livre_index') }}">
+						<span>
+						  Bookstore HZ
+						</span>
+					  </a>
+			
+					  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class=""> </span>
+					  </button>
+			
+					  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav">
+						  <li class="nav-item active">
+							<a class="nav-link pl-lg-0" href="{{ path('livre_index') }}">Accueil <span class="sr-only">(current)</span></a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link" href="{{ path('auteur_index') }}"> Auteur</a>
+						  </li>
+						 
+						  <li class="nav-item">
+							<a class="nav-link" href="{{ path('livre_index') }}"> Livre </a>
+						  </li>
+			
+						   <li class="nav-item">
+							<a class="nav-link" href="{{ path('genre_index') }}">Genre</a>
+						  </li>
+						  
+						  <li class="nav-item">
+							<a class="nav-link" href="contact.html">Contact Us</a>
+						  </li>
+
+						  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+								<li class="nav-item">
 									<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
 								</li>
 							{% else %}
-								<li>
+								<li class="nav-item">
 									<a class="nav-link" href="{{ path('app_login') }}">Login</a>
 								</li>
-								<li>
+								<li class="nav-item">
 									<a class="nav-link" href="{{ path('app_register') }}">Register</a>
 								</li>
-							{% endif %}
+							{% endif %}	
+
+
 
 						</ul>
-					</div>
-				</div>
-			</nav>
+						<from class="search_form">
+						  <input type="text" class="form-control" placeholder="Search here...">
+						  <button class="" type="submit">
+							<i class="fa fa-search" aria-hidden="true"></i>
+						  </button>
+						</from>
+					  </div>
+					</nav>
+				  </div>
+				</header>
+
+
+
+
 			<div class="container mt-5"> {% block body %}{% endblock %}{% block javascripts %}{% endblock %}
 				</div>
+
+
+  <!-- info section -->
+
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 info-col">
+          <div class="info_detail">
+            <h4>
+              About Us
+            </h4>
+            <p>
+              Vitae aut explicabo fugit facere alias distinctio, exem commodi mollitia minusem dignissimos atque asperiores incidunt vel voluptate iste
+            </p>
+            <div class="info_social">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 info-col">
+          <div class="info_contact">
+            <h4>
+              Address
+            </h4>
+            <div class="contact_link_box">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +01 1234567890
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>
+                  demo@gmail.com
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 info-col">
+          <div class="info_contact">
+            <h4>
+              Newsletter
+            </h4>
+            <form action="#">
+              <input type="text" placeholder="Enter email" />
+              <button type="submit">
+                sabonner
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 info-col">
+          <div class="map_container">
+            <div class="map">
+              <div id="googleMap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info section -->
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="">Hajar Zarguan</a>
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+  <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+
+
+
 			</body>
 		</html>
