@@ -3,6 +3,7 @@
 {% block title %}Genres
 {% endblock %}
 
+
 {% block body %}
 
 
@@ -18,7 +19,7 @@
 		  </p>
 		  
 	{% if is_granted('ROLE_ADMIN') %}
-	<a class="btn btn-primary" href="{{ path('genre_new') }}">Ajouter</a>
+	<a class="btn btn-success" href="{{ path('genre_new') }}"><i class="fas fa-plus"></i></a>
 	{% endif %}
 		</div>
 
@@ -41,12 +42,13 @@
 				  point of using
 				</p>
 
-				<a class="btn btn-info" href="{{ path('genre_show', {'id': genre.id}) }}">Afficher</a>
-				{% if is_granted('ROLE_ADMIN') %}
-					<a class="btn btn-success" href="{{ path('genre_edit', {'id': genre.id}) }}">Modifier</a>
-					{{ include('genre/_delete_form.html.twig') }}
-				{% endif %}
+			
 
+				<a  class="btn btn-info"  style="color: white;" href="{{ path('genre_show', {'id': genre.id}) }}"><i class="far fa-eye"></i></a>
+						{% if is_granted('ROLE_ADMIN') %}
+				<a  class="btn btn-success" style="color: white;" href="{{ path('genre_edit', {'id': genre.id}) }}"><i class="far fa-edit"></i></a>
+							{{ include('genre/_delete_form.html.twig') }}
+						{% endif %}
 			     </div>
 
 

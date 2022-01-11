@@ -6,10 +6,13 @@
 {% block body %}
 <div class="container">
 	
-	<section class="client_section ">
-		<h1>Listes des auteurs</h1>
+	<section class="client_section " style="margin-top: 100px;">
+		<div class="heading_container heading_center">
+			<h2>
+			  Auteurs
+			</h2>
 		{% if is_granted('ROLE_ADMIN') %}
-		<a class="btn btn-primary" href="{{ path('auteur_new') }}">Ajouter</a>
+		<a class="btn btn-primary" href="{{ path('auteur_new') }}"><i class="fas fa-plus"></i></a>
 	{% endif %}
 		<div class="row">
 	       {% for auteur in auteurs %}
@@ -19,17 +22,19 @@
 				<div class="client_container ">
 					
 					<div class="detail-box">
-						<span>{{ auteur.id }} )</span>
+						<span>{{ auteur.id }}.</span>
 					<p>
 					-  {{ auteur.nomPrenom }} est né le {{ auteur.dateDeNaissance ? auteur.dateDeNaissance|date('Y-m-d') : '' }} 
 					<br>
-					-  Sa nationalité est {{ auteur.nationalite }}.
+					-  Sa nationalité est {{ auteur.nationalite }}.<br>
 
-					<a class="btn btn-primary" href="{{ path('auteur_show', {'id': auteur.id}) }}">Afficher</a>
+					<a  class="btn btn-info"  style="color: white;" href="{{ path('auteur_show', {'id': auteur.id}) }}"><i class="far fa-eye"></i></a>
 						{% if is_granted('ROLE_ADMIN') %}
-							<a class="btn btn-primary" href="{{ path('auteur_edit', {'id': auteur.id}) }}">Modifier</a>
+				<a  class="btn btn-success" style="color: white;" href="{{ path('auteur_edit', {'id': auteur.id}) }}"><i class="far fa-edit"></i></a>
 							{{ include('auteur/_delete_form.html.twig') }}
 						{% endif %}
+
+					
 					</p>
 					<span>
 						<i class="fa fa-quote-left" aria-hidden="true"></i>
@@ -42,6 +47,7 @@
 		
 		
 			{% endfor %}
+		</div>
 		</div>
 		</section>
 

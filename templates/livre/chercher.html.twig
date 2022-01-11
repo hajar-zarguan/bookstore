@@ -5,7 +5,14 @@
 
 {% block body %}
 	{% if livres|length > 0  %}
-		<h1>Livres</h1>
+	<div class=" container contact_section" >
+
+
+		<div class="heading_container heading_center">
+			<h2>
+			 Résultat de votre recherche
+			</h2>
+		</div>
 
 		<table id="livres" class="table">
 			<thead>
@@ -27,9 +34,9 @@
 						<td>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</td>
 						<td>{{ livre.note }}</td>
 						<td>
-							<a class="btn btn-primary" href="{{ path('livre_show', {'id': livre.id}) }}">Afficher</a>
+							<a class="btn btn-primary" href="{{ path('livre_show', {'id': livre.id}) }}">afficher</i></a>
 							{% if is_granted('ROLE_ADMIN') %}
-								<a class="btn btn-primary" href="{{ path('livre_edit', {'id': livre.id}) }}">Modifier</a>
+								<a class="btn btn-primary" href="{{ path('livre_edit', {'id': livre.id}) }}">modifier</a>
 								{{ include('livre/_delete_form.html.twig') }}
 							{% endif %}
 						</td>
@@ -41,6 +48,7 @@
 	{% else %}
 		<p class="alert alert-danger">Aucun résultat</p>
 	{% endif %}
+	</div>
 {% endblock %}
 
 {% block javascripts %}

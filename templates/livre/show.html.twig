@@ -4,8 +4,11 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Livre</h1>
 
+
+<div class="container" > 
+	<div class="heading_container heading_center"><h1>Livre</h1></div>
+	
 	<table class="table">
 		<tbody>
 			<tr>
@@ -35,9 +38,9 @@
 			<tr>
 				<th>Genres</th>
 				<td>
-					{% for genre in livre.genres %}
+					{% for genre in livre.getGenre %}
 						<span>
-							{{ genre }}
+							{{ genre.nom }}
 						</span><br>
 					{% endfor %}
 				</td>
@@ -45,7 +48,7 @@
 			<tr>
 				<th>Auteurs</th>
 				<td>
-					{% for auteur in livre.auteurs %}
+					{% for auteur in livre.getAuteur %}
 						<span>
 							{{ auteur }}
 						</span><br>
@@ -57,7 +60,8 @@
 
 	{% if is_granted('ROLE_ADMIN') %}
 		<a class="btn btn-primary" href="{{ path('livre_edit', {'id': livre.id}) }}">Modifier</a>
-
 		{{ include('livre/_delete_form.html.twig') }}
 	{% endif %}
+</div>
+
 {% endblock %}

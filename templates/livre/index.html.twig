@@ -32,7 +32,7 @@
 			  </div>
 			  <div class="col-md-6">
 				<div class="img-box">
-				  <img src="images/slider-img.png" alt="">
+				  <img src="images/Webp.net-resizeimage.png" alt="">
 				</div>
 			  </div>
 			</div>
@@ -93,30 +93,37 @@
         <h2>
           Les livres 
         </h2>
+		  
 		{% if is_granted('ROLE_ADMIN') %}
-		<a style="margin-bottom: 50px;" href="{{ path('livre_new') }}">Ajouter un livre </a>
+		<a class="btn btn-success" style="margin-bottom: 100px;" href="{{ path('livre_new') }}"><i class="fas fa-plus"></i></a>
 		{% endif %}
+
+	
       </div>
 
 	  
 		<div class=" row ">
 	
-			<div class="col-md-3">
-			<form method="POST" onsubmit="chercher(event)">
-			<input id="motCle" type="text" class="form-control" placeholder="Chercher">
-			<button class="btn btn-primary my-2">Chercher</button>
-		</form>
-		</div>
+			<div class="col-md-6" >
+
+				<form class="search_form" method="POST" onsubmit="chercher(event)">
+				<input  id="motCle" type="text" class="form-control" style="border-color: blue;"
+				placeholder="Chercher un livre ...">
+				<button class="btn btn-primary my-2"><i class="fa fa-search"></i></button>
+				</form>
+			</div>
+
+		
 	
-		<div class="col-md-3">
-		<form method="POST" onsubmit="list(event)">
-			
-			<input id="dateMin" type="number" class="form-control" placeholder="date 1">
-			<input id="dateMax" type="number" class="form-control" placeholder="date 2">
-			<button class="btn btn-primary ">Lister</button>
-		</form>
-	</div>
-	</div>
+			<div class="col-md-6">
+				<form class="search_form" method="POST" onsubmit="list(event)">
+					<input id="dateMin" type="number" class="form-control" placeholder="date 1">
+					<input id="dateMax" type="number" class="form-control" placeholder="date 2">
+					<button class="btn btn-primary "><i class="fas fa-list"></i></button>
+				</form>
+			</div>
+      	</div>
+
 
 	<div class="row">
 		<div class="col-md-3 "> 

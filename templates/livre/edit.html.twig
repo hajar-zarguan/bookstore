@@ -4,9 +4,17 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Edit Livre</h1>
+<div class=" container contact_section" >
+
+
+	<div class="heading_container heading_center">
+		<h2>
+		 Modifier livre
+		</h2>
+	</div>
 
 	{{ include('livre/_form.html.twig', {'button_label': 'Modifier'}) }}
 
 	{{ include('livre/_delete_form.html.twig') }}
+</div>
 {% endblock %}

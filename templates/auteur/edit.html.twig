@@ -4,8 +4,16 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Modifier un Auteur</h1>
+<div class=" container contact_section" >
+
+
+	<div class="heading_container heading_center">
+		<h2>
+		 Modifier auteur
+		</h2>
+	</div>
 
 	{{ include('auteur/_form.html.twig', {'button_label': 'Modifier'}) }}
 	{{ include('auteur/_delete_form.html.twig') }}
+	</div>
 {% endblock %}

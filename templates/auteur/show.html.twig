@@ -24,11 +24,19 @@
           <div class="client_container ">
 			  <div class="client_id">
 				<div class="img-box">
+          
+          {% if auteur.sexe =="M" %}
 				<img src="images/c1.jpg" alt="">
+           {% else %}
+           <img src="images/c3.jpg" alt="">
+           {% endif %}
+
+
+
 				</div>
 				<div class="client_name">
 				<h5>
-					{{ auteur.id }} )
+					{{ auteur.id }} .
 				</h5>
 				<span>{{ auteur.nomPrenom }}</span>
 					
@@ -51,6 +59,15 @@
               <span>
                 <i class="fa fa-quote-left" aria-hidden="true"></i>
               </span>
+
+              <br>
+             
+
+            {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-success" href="{{ path('auteur_edit', {'id': auteur.id}) }}">Modifier</a>
+            {{ include('auteur/_delete_form.html.twig') }}
+            {% endif %}
+
             </div>
           
           </div>
@@ -58,17 +75,15 @@
 
         
       </div>
+   
     </div>
+    	
+
   </section>
 
 
    <!-- <td>{{ auteur.sexe }}</td>-->
-	
-	{% if is_granted('ROLE_ADMIN') %}
-		<a class="btn btn-primary" href="{{ path('auteur_edit', {'id': auteur.id}) }}">Modifier</a>
 
-		{{ include('auteur/_delete_form.html.twig') }}
-	{% endif %}
 
 </div>
 {% endblock %}
